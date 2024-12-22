@@ -15,7 +15,10 @@
     "match-sorter": "^8.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+<<<<<<< HEAD
     "react-hot-toast": "^2.4.1",
+=======
+>>>>>>> a1cfd9d87526f6ea3f3689ede68e05d4f9d7b6c1
     "react-icons": "^5.4.0",
     "react-router-dom": "^7.1.0",
     "sort-by": "^1.2.0"
