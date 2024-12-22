@@ -8,7 +8,7 @@ const Navbar = () => {
     const links = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/" >All Foods</NavLink></li>
-        <li><NavLink to="/" >Gallery</NavLink></li>
+        <li><NavLink to="/login" >Gallery</NavLink></li>
    
         {
             user && <li><NavLink to='/addequipment' >My Foods</NavLink></li>
@@ -44,7 +44,7 @@ const Navbar = () => {
                         {links}
                     </ul>
                 </div>
-                <Link to='/' className="btn btn-ghost text-xl hover:bg-lime-900 hover:text-white rounded-none">Spots Zone</Link>
+                <Link to='/' className="btn btn-ghost text-xl hover:bg-lime-900 hover:text-white rounded-none">ABC Restaurant </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
 
@@ -77,7 +77,7 @@ const Navbar = () => {
                             <div><button className='btn'><a onClick={logOut}>Logout</a></button> </div>
                         </div>
 
-                        : <Link to='/auth/login' className="btn bg-[#A9C80D] text-white rounded-none">Login</Link>
+                        : <Link to='/login' className="btn bg-[#A9C80D] text-white rounded-none">Login</Link>
                 }
                 {/* {
                     user && user?.email ? <button onClick={logOut} className="btn btn-neutral rounded-none">logout</button> : <Link to='/auth/login' className="btn btn-neutral rounded-none">Login</Link>
