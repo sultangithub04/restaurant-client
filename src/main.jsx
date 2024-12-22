@@ -7,15 +7,14 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <div>Hello world!</div>,
-  },
-]);
+import router from './routes/Routes.jsx';
+import AuthProvider from './providers/AuthProvider.jsx';
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>,
 )
