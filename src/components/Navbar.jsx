@@ -9,7 +9,7 @@ const Navbar = () => {
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/" >All Foods</NavLink></li>
         <li><NavLink to="/login" >Gallery</NavLink></li>
-   
+
         {
             user && <li><NavLink to='/addequipment' >My Foods</NavLink></li>
         }
@@ -17,7 +17,7 @@ const Navbar = () => {
             user && <li><NavLink to='/mylist' >My Orders </NavLink></li>
         }
         {
-            user && <li><NavLink to='/mylist' >Add Food </NavLink></li>
+            user && <li><NavLink to='/addfood' >Add Food </NavLink></li>
         }
     </>
     return (
@@ -58,22 +58,47 @@ const Navbar = () => {
             {/* text */}
 
             <div className="navbar-end">
+
+
                 {
                     user && user?.email ?
                         <div className='flex gap-3'>
-                            <div className="dropdown dropdown-hover">
-                                <div tabIndex={0} role="button" className=" m-1">
-                                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                                        <div className="w-10 rounded-full">
-                                            <img src={user && user?.photoURL} alt="" />
+                            {/* ckkk */}
+                            {user && (
+                                <div className='dropdown dropdown-end z-50'>
+                                    <div
+                                        tabIndex={0}
+                                        role='button'
+                                        className='btn btn-ghost btn-circle avatar'
+                                    >
+                                        <div title={user?.displayName} className='w-10 rounded-full'>
+                                            <img
+                                                referrerPolicy='no-referrer'
+                                                alt='User Profile Photo'
+                                                src={user?.photoURL}
+                                            />
                                         </div>
                                     </div>
-                                </div>
-                                <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] p-2 shadow">
-                                    <li>{user && user?.displayName}</li>
+                                    <ul
+                                        tabIndex={0}
+                                        className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-28'
+                                    >
 
-                                </ul>
-                            </div>
+                                        <li>
+                                            <Link to='/my-posted-jobs'>My Food</Link>
+                                        </li>
+                                        <li>
+                                            <Link to='/my-bids'>Add food</Link>
+                                        </li>
+                                        <li>
+                                            <Link to='/bid-requests'>My Order</Link>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            )}
+                            {/* ckk */}
+
                             <div><button className='btn'><a onClick={logOut}>Logout</a></button> </div>
                         </div>
 
