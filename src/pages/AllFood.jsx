@@ -79,7 +79,15 @@ const AllFood = () => {
                     pages.map(page => <NavLink onClick={() => setCurrentPage(page)} className={currentPage === page ? 'bg-red-300 btn mx-4' : 'btn mx-4'} key={page}>{page}</NavLink>)
                 }
                 <button onClick={handleNextPage}>Next</button>
- 
+                <select className='ml-4' value={itemPerPage} onChange={handleItemChange} name="" id="">
+                    <option value="4">4</option>
+                    <option value="8">8</option>
+                    <option value="12">12</option>
+                    <option value="16">16</option>
+                </select>
+
+            </div>
+        </div>
     )
 }
 
