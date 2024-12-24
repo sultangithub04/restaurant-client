@@ -7,7 +7,7 @@ const Navbar = () => {
     const { user, logOut, toggleTheme } = useContext(AuthContext);
     const links = <>
         <li><NavLink to="/">Home</NavLink></li>
-        <li><NavLink to="/" >All Foods</NavLink></li>
+        <li><NavLink to="/allfood" >All Foods</NavLink></li>
         <li><NavLink to="/login" >Gallery</NavLink></li>
 
         {
