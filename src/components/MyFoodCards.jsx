@@ -2,8 +2,8 @@
 
 import { Link } from 'react-router-dom'
 // import { format } from 'date-fns'
-const FoodCard = ({ food }) => {
-    const { _id, foodName, foodImage, foodCategory, quantity, price, purchaseCount } =
+const MyFoodCards = ({ food }) => {
+    const { _id, foodName, foodImage, foodCategory, quantity, price } =
         food || {}
 
     return (
@@ -15,14 +15,13 @@ const FoodCard = ({ food }) => {
                 <p> <span className='font-extrabold'>Price : </span> ${price}</p>
                 <p><span className='font-extrabold'>Food Category :</span> {foodCategory}</p>
                 <p><span className='font-extrabold'>Quantity :</span> {quantity}</p>
-                <p><span className='font-extrabold'>Purchase Count :</span> {purchaseCount}</p>
             </div>
-            <Link to={`/food/${_id}`} className='btn bg-red-700 hover:bg-gray-950 text-white mt-3'>
-                Details
+            <Link to={`/update/${_id}`} className='btn bg-red-700 hover:bg-gray-950 text-white mt-3'>
+            update 
 
             </Link>
         </div>
     )
 }
 
-export default FoodCard
+export default MyFoodCards

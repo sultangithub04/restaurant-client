@@ -1,40 +1,64 @@
-
-// Import necessary modules
 import React, { useContext, useState } from "react";
 import axios from "axios";
 import "tailwindcss/tailwind.css";
 import { AuthContext } from "../providers/AuthProvider";
 import bannerImg from '../assets/banner.jpg';
 import toast from "react-hot-toast";
+import { useLocation, useNavigate } from "react-router-dom";
+
 const FoodPurchase = () => {
+  const { state } = useLocation();
   const { user } = useContext(AuthContext);
+  const navagate = useNavigate()
+const availableQuantity= parseInt(state.quantity);
+  const basePrice = state.price;
+
   const [formData, setFormData] = useState({
-    foodName: "",
-    price: "",
-    quantity: "",
+    foodName: state.foodName,
+    foodId: state._id,
+    price: basePrice,
+    quantity: 1,
   });
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
+    const { name, value } = e.target;
+
+    setFormData((prevData) => {
+      const updatedData = {
+        ...prevData,
+        [name]: value,
+      };
+
+      // Recalculate the price 
+      if (name === "quantity") {
+        const quantity = Math.max(1, Math.min(value, availableQuantity));
+        updatedData.price = basePrice * quantity;
+      }
+
+      return updatedData;
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const data = {
-      ...formData,
-      buyerName: user?.name,
+      foodName: formData.foodName,
+      price: formData.price,
+      quantity: formData.quantity,
+      buyerName: user?.displayName,
       buyerEmail: user?.email,
-      buyingDate: Date.now(),
+      buyingDate: new Date(),
+      foodId: formData.foodId,
     };
 
     try {
-      const response = await axios.post("http://localhost:5000/api/purchase", data);
+      const response = await axios.post("http://localhost:5000/purchase", data);
       if (response.status === 200) {
         toast.success("Purchase successful!");
-        setFormData({ foodName: "", price: "", quantity: "" });
+
+        setFormData({ foodName: state.foodName, price: basePrice, quantity: 1 });
+        navagate("/myOrder")
       }
     } catch (error) {
       console.error("Error submitting purchase:", error);
@@ -45,25 +69,21 @@ const FoodPurchase = () => {
   return (
     <div>
       <div>
-        {/* test */}
         <div
-          className="hero "
+          className="hero"
           style={{
             backgroundImage: `url(${bannerImg})`,
-          }}>
-          <div className=""></div>
+          }}
+        >
           <div className="hero-content text-neutral-content text-center">
             <div className="max-w-md">
-              <br /><br />
-              <h1 className="mb-5 text-5xl font-bold">Food Purchase </h1>
-              <br /><br />
+              <h1 className="mb-5 text-5xl font-bold">Food Purchase</h1>
             </div>
           </div>
         </div>
-        {/* test */}
+        <br />
       </div>
-      <div className="flex justify-center items-center h-screen bg-gray-100">
-
+      <div className="flex justify-center items-center bg-gray-100">
         <form
           onSubmit={handleSubmit}
           className="w-full max-w-md bg-white shadow-md rounded px-8 pt-6 pb-8"
@@ -79,7 +99,7 @@ const FoodPurchase = () => {
               id="foodName"
               name="foodName"
               value={formData.foodName}
-              onChange={handleChange}
+              readOnly
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               required
             />
@@ -94,8 +114,8 @@ const FoodPurchase = () => {
               id="price"
               name="price"
               value={formData.price}
-              onChange={handleChange}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              readOnly
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-100 cursor-not-allowed"
               required
             />
           </div>
@@ -108,7 +128,7 @@ const FoodPurchase = () => {
               type="number"
               id="quantity"
               name="quantity"
-              value={formData.quantity}
+              value={formData.quantity>0&formData.quantity<=availableQuantity?formData.quantity:"1"}
               onChange={handleChange}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               required
@@ -123,7 +143,7 @@ const FoodPurchase = () => {
               type="text"
               value={user?.displayName}
               readOnly
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-100 cursor-not-allowed"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-100 "
             />
           </div>
 
@@ -135,7 +155,7 @@ const FoodPurchase = () => {
               type="email"
               value={user?.email}
               readOnly
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-100 cursor-not-allowed"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-100 "
             />
           </div>
 
@@ -152,3 +172,5 @@ const FoodPurchase = () => {
 };
 
 export default FoodPurchase;
+
+

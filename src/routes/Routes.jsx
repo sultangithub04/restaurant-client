@@ -6,10 +6,13 @@ import Login from '../pages/Login'
 import Register from '../pages/Register'
 import AddFood from '../pages/AddFood'
 import AllFood from '../pages/AllFood'
-import FoodDetails from '../pages/FoodDetails'
+import FoodDetails from '../pages/SingleFood'
 import FoodPurchase from '../pages/FoodPurchase'
-import SingleFood from '../pages/FoodDetails'
+import SingleFood from '../pages/SingleFood'
 import Gallery from '../pages/Gallery'
+import MyFood from '../pages/MyFood'
+import MyOrder from '../pages/MyOrder'
+import UpdateFood from '../pages/UpdateFood'
 const router = createBrowserRouter([
   {
     path: '/',
@@ -48,6 +51,18 @@ const router = createBrowserRouter([
       {
         path: '/gallery',
         element: <Gallery></Gallery>,
+      },
+      {
+        path: '/myFood',
+        element: <MyFood></MyFood>,
+      },
+      {
+        path: '/myOrder',
+        element: <MyOrder></MyOrder>,
+      },
+      {
+        path: '/update/:id',
+        element: <UpdateFood></UpdateFood>,
       },
     
     

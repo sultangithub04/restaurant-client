@@ -26,63 +26,10 @@ const SingleFood = () => {
         setFood(data)
         // setStartDate(new Date(data.deadline))
     }
-    const { _id, foodName, foodImage, foodCategory, quantity, price, foodOrigin, description } =
+    const { _id, foodName, foodImage, foodCategory, quantity, price, foodOrigin, description, purchaseCount } =
         food || {}
 
-    // Handle form submit
-    const handleSubmit = async e => {
-        // e.preventDefault()
-        // const form = e.target
-        // const price = form.price.value
-        // const email = user?.email
-        // const comment = form.comment.value
-        // const jobId = _id
 
-        // 0. Check bid permissions validation
-        // if (user?.email === buyer?.email)
-        //     return toast.error('Action not permitted!')
-
-        // 1. Deadline crossed validation
-        // if (compareAsc(new Date(), new Date(deadline)) === 1)
-        //     return toast.error('Deadline Crossed, Bidding Forbidden!')
-
-        // 2. Price within maximum price range validation
-        // if (price > max_price)
-        //     return toast.error('Offer less or at least equal to maximum price!')
-
-        // 3. offered deadline is within sellers deadline validation
-        // if (compareAsc(new Date(startDate), new Date(deadline)) === 1)
-        //     return toast.error('Offer a date within deadline')
-
-        // const bidData = {
-        //     price,
-        //     email,
-        //     comment,
-        //     deadline: startDate,
-        //     jobId,
-        //     title,
-        //     category,
-        //     status: 'Pending',
-        //     buyer: buyer?.email,
-        // }
-
-        // try {
-        //     // 1. make a post request
-        //     const { data } = await axios.post(
-        //         `${import.meta.env.VITE_API_URL}/add-bid`,
-        //         bidData
-        //     )
-        //     // 2. Reset form
-        //     form.reset()
-        //     // 3. Show toast and navigate
-        //     toast.success('Bid Successful!!!')
-        //     console.log(data)
-        //     navigate('/my-bids')
-        // } catch (err) {
-        //     console.log(err)
-        //     toast.error(err?.response?.data)
-        // }
-    }
     return (
         <div className='flex flex-col md:flex-row justify-around gap-5  items-center min-h-[calc(100vh-306px)] md:max-w-screen-xl mx-auto '>
      
@@ -114,10 +61,10 @@ const SingleFood = () => {
                     <p><span className='font-extrabold'>Quantity :</span> {quantity}</p>
                     <p><span className='font-extrabold'>Food Origin :</span> {foodOrigin}</p>
                     <p><span className='font-extrabold'>Description :</span> {description}</p>
-                    <p><span className='font-extrabold'>Purchase Count :</span> 0</p>
+                    <p><span className='font-extrabold'>Purchase Count :</span> {purchaseCount}</p>
                 </div>
 
-                <Link to ={`/purchase`} className='btn btn-primary mt-10'>Purchase</Link>
+                <Link state={food} to ={`/purchase`} className='btn btn-primary mt-10'>Purchase</Link>
             
             </section>
             

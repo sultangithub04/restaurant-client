@@ -11,10 +11,10 @@ const Navbar = () => {
         <li><NavLink to="/gallery" >Gallery</NavLink></li>
 
         {
-            user && <li><NavLink to='/addequipment' >My Foods</NavLink></li>
+            user && <li><NavLink to='/myFood' >My Foods</NavLink></li>
         }
         {
-            user && <li><NavLink to='/mylist' >My Orders </NavLink></li>
+            user && <li><NavLink to='/myOrder' >My Orders </NavLink></li>
         }
         {
             user && <li><NavLink to='/addfood' >Add Food </NavLink></li>

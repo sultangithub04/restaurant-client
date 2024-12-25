@@ -22,11 +22,13 @@ const navigate= useNavigate()
     price: "",
     foodOrigin: "",
     description: "",
+    email:"",
+    purchaseCount:0,
   });
-
+console.log(formData);
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData({ ...formData, [name]: value, email });
   };
 
   const handleSubmit = async(e) => {
@@ -179,7 +181,7 @@ const navigate= useNavigate()
           <div>
             <button
               type="submit"
-              className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-200"
+              className="w-full bg-red-700 text-white py-2 rounded-md hover:bg-red-900 transition duration-200"
             >
               Add Item
             </button>
