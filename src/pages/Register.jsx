@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import { AuthContext } from "../providers/AuthProvider";
 
 const Register = () => {
-    const { createUser, setUser, updateUserProfile, signInWithGoogle,setLoading } = useContext(AuthContext);
+    const { createUser, setUser, updateUserProfile, signInWithGoogle, setLoading } = useContext(AuthContext);
     const navigate = useNavigate();
     const [error, setError] = useState({});
     const [showPassword, setShowPassword] = useState(false);
@@ -23,7 +23,7 @@ const Register = () => {
             });
     };
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const form = new FormData(e.target);
         const name = form.get('name');
@@ -55,10 +55,10 @@ const Register = () => {
             setUser({ ...result.user, photoURL: photo, displayName: name })
             toast.success('Signup Successful')
             navigate('/')
-          } catch (err) {
+        } catch (err) {
             console.log(err)
             toast.error(err?.message)
-          }
+        }
     };
 
     return (
@@ -72,6 +72,12 @@ const Register = () => {
                         </label>
                         <input name="name" type="text" placeholder="Name" className="input input-bordered" required />
                     </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Email</span>
+                        </label>
+                        <input name="email" type="email" placeholder="Email" className="input input-bordered" required />
+                    </div>
 
                     <div className="form-control">
                         <label className="label">
@@ -80,12 +86,7 @@ const Register = () => {
                         <input name="photo" type="text" placeholder="Photo URL" className="input input-bordered" required />
                     </div>
 
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Email</span>
-                        </label>
-                        <input name="email" type="email" placeholder="Email" className="input input-bordered" required />
-                    </div>
+
 
                     <div className="form-control relative">
                         <label className="label">
@@ -113,7 +114,7 @@ const Register = () => {
                     </div>
 
                     <div className="form-control mt-6">
-                        <button className="btn btn-primary">Register</button>
+                        <button className="btn bg-[#111827] text-white hover:bg-red-700">Register</button>
                     </div>
                 </form>
 

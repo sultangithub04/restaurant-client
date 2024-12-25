@@ -16,7 +16,7 @@ const FoodCard = ({ food }) => {
                 <p><span className='font-extrabold'>Food Category :</span> {foodCategory}</p>
                 <p><span className='font-extrabold'>Quantity :</span> {quantity}</p>
             </div>
-            <Link to={`/food/${_id}`} className='btn btn-primary mt-3'>
+            <Link to={`/food/${_id}`} className='btn bg-red-700 hover:bg-gray-950 text-white mt-3'>
                 Details
 
             </Link>

@@ -1,25 +1,26 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import FoodCard from '../components/FoodCard'
+import bannerImg from '../assets/banner.jpg';
 
 const AllFood = () => {
     const [foods, setFoods] = useState([])
     const [search, setSearch] = useState('')
     const [itemPerPage, setItemPerPage] = useState(8)
     const [currentPage, setCurrentPage] = useState(0)
-    const [count, setCount]= useState(0);
+    const [count, setCount] = useState(0);
 
-    useEffect(()=>{
+    useEffect(() => {
         fetch('http://localhost:5000/foodCount')
-        .then(res=>res.json())
-        .then(data=>setCount(data.count))
+            .then(res => res.json())
+            .then(data => setCount(data.count))
     }, [])
 
     const numberOfPage = Math.ceil(count / itemPerPage);
     const pages = [...Array(numberOfPage).keys()]
-  
+
 
     const handlePrevPage = () => {
         if (currentPage > 0) setCurrentPage(currentPage - 1)
@@ -37,7 +38,7 @@ const AllFood = () => {
         const fetchAllFoods = async () => {
             const { data } = await axios.get(`http://localhost:5000/foods?search=${search}&page=${currentPage}&size=${itemPerPage}`)
             setFoods(data)
- 
+
         }
         fetchAllFoods()
     }, [currentPage, itemPerPage, search])
@@ -45,6 +46,23 @@ const AllFood = () => {
     return (
         <div className='container px-6 py-10 mx-auto min-h-[calc(100vh-306px)] flex flex-col justify-between'>
             <div>
+                {/* test */}
+                <div
+                    className="hero "
+                    style={{
+                        backgroundImage: `url(${bannerImg})`,
+                    }}>
+                    <div className=""></div>
+                    <div className="hero-content text-neutral-content text-center">
+                        <div className="max-w-md">
+                            <br /><br />
+                            <h1 className="mb-5 text-5xl font-bold">All FOODS  </h1>
+                            <br /><br />
+                        </div>
+                    </div>
+                </div>
+                {/* test */}
+                <br /><br /><br />
                 <div className='flex flex-col md:flex-row justify-center items-center gap-5 '>
 
                     <div>
@@ -63,7 +81,7 @@ const AllFood = () => {
                             </button>
                         </div>
                     </div>
-                 
+
                 </div>
                 <div className='grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
                     {foods.map(food => (
@@ -76,7 +94,7 @@ const AllFood = () => {
                 <h2>Current pages: {currentPage}</h2>
                 <button onClick={handlePrevPage}>prev</button>
                 {
-                    pages.map(page => <NavLink onClick={() => setCurrentPage(page)} className={currentPage === page ? 'bg-red-300 btn mx-4' : 'btn mx-4'} key={page}>{page}</NavLink>)
+                    pages.map(page => <NavLink onClick={() => setCurrentPage(page)} className={currentPage === page ? 'bg-red-700 text-white btn mx-4' : 'btn mx-4'} key={page}>{page}</NavLink>)
                 }
                 <button onClick={handleNextPage}>Next</button>
                 <select className='ml-4' value={itemPerPage} onChange={handleItemChange} name="" id="">

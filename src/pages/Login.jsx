@@ -65,7 +65,7 @@ const Login = () => {
                         <button onClick={() => { setShowPassword(!showPassword) }} className='btn btn-xs absolute right-4 top-12'>{showPassword ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>} </button>
                         {
                             error.login && (
-                                <label className='label text-sm text-red-500'>
+                                <label className='label text-[#111827]'>
                                     {error.login}
                                 </label>
                             )
@@ -77,7 +77,7 @@ const Login = () => {
                     </div>
 
                     <div className="form-control mt-6">
-                        <button className="btn bg-lime-900 text-white">Login</button>
+                        <button className="btn bg-blue-950 text-white hover:bg-red-700">Login</button>
                     </div>
                 </form>
                 <div className='text-center'>

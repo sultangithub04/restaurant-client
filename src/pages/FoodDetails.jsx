@@ -9,7 +9,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-hot-toast'
 import { AuthContext } from '../providers/AuthProvider'
 
-const FoodDetails = () => {
+const SingleFood = () => {
     const navigate = useNavigate()
     const { user } = useContext(AuthContext)
     // const [startDate, setStartDate] = useState(new Date())
@@ -125,4 +125,4 @@ const FoodDetails = () => {
     )
 }
 
-export default FoodDetails
+export default SingleFood;
