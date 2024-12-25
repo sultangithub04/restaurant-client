@@ -1,10 +1,14 @@
 /* eslint-disable react/prop-types */
 import axios from "axios";
 import moment from "moment";
+import { useContext } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from 'react-router-dom'
+import { AuthContext } from "../providers/AuthProvider";
+import LoadingSpinner from "./LoadingSpinner";
 // import { format } from 'date-fns'
 const MyOrderCards = ({ food}) => {
+    const {loading}= useContext(AuthContext)
     const { _id, foodName, foodImage, quantity, price, buyingDate } =
         food || {}
 const navigate= useNavigate()
@@ -15,12 +19,14 @@ const handleDelete=async(id)=>{
     try {
         await axios.delete(`http://localhost:5000/delete/${id}`);
         toast.success("Data delete successfully!");
-        navigate("/allFood");
+      
+        window.location.reload();
     } catch (err) {
         console.error(err);
         toast.error("Failed to update food data");
     }
 }
+if (loading) return <LoadingSpinner></LoadingSpinner>
     return (
 
         <div className='w-full max-w-sm px-4 py-3 bg-white rounded-md shadow-md hover:scale-[1.05] transition-all'>

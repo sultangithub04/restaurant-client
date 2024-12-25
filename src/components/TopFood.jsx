@@ -1,10 +1,13 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import FoodCard from './FoodCard';
 import { Link } from 'react-router-dom';
+import LoadingSpinner from './LoadingSpinner';
+import { AuthContext } from '../providers/AuthProvider';
 
 const TopFood = () => {
     const [foods, setFoods] = useState([])
+    const {loading}= useContext(AuthContext)
     useEffect(() => {
         const fetchAllFoods = async () => {
             const { data } = await axios.get(`http://localhost:5000/topFood`)
@@ -13,6 +16,7 @@ const TopFood = () => {
         fetchAllFoods()
     }, [])
     console.log(foods);
+    if (loading) return <LoadingSpinner></LoadingSpinner>
     return (
         <div>
             <h1 className='text-center text-5xl font-extrabold mt-20 text-red-700'>Top Selling Product</h1>

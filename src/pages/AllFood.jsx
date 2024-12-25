@@ -4,8 +4,12 @@ import axios from 'axios'
 import { Link, NavLink } from 'react-router-dom'
 import FoodCard from '../components/FoodCard'
 import bannerImg from '../assets/banner.jpg';
+import { useContext } from 'react';
+import { AuthContext } from '../providers/AuthProvider';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const AllFood = () => {
+   const { loading } = useContext(AuthContext);
     const [foods, setFoods] = useState([])
     const [search, setSearch] = useState('')
     const [itemPerPage, setItemPerPage] = useState(8)
@@ -42,7 +46,7 @@ const AllFood = () => {
         }
         fetchAllFoods()
     }, [currentPage, itemPerPage, search])
-
+    if (loading) return <LoadingSpinner></LoadingSpinner>
     return (
         <div className='container px-6 py-10 mx-auto min-h-[calc(100vh-306px)] flex flex-col justify-between'>
             <div>

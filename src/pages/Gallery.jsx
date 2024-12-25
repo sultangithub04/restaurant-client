@@ -1,12 +1,14 @@
 
 
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "tailwindcss/tailwind.css";
+import LoadingSpinner from "../components/LoadingSpinner";
+import { AuthContext } from "../providers/AuthProvider";
 
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState(null);
-
+const {loading}= useContext(AuthContext)
   const images = [
     "https://i.ibb.co.com/VmnmdPh/Cheese-Omlette-400x400.jpg",
     "https://i.ibb.co.com/98y8js6/Breakfast-Wholesome-1-400x400.jpg",
@@ -31,7 +33,7 @@ const Gallery = () => {
   const closeLightbox = () => {
     setSelectedImage(null);
   };
-
+  if (loading) return <LoadingSpinner></LoadingSpinner>
   return (
     <div className="bg-base-200 text-white  flex flex-col items-center justify-center">
       {/* Page Title */}

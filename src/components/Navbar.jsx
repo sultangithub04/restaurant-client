@@ -85,13 +85,13 @@ const Navbar = () => {
                                     >
 
                                         <li>
-                                            <Link to='/my-posted-jobs'>My Food</Link>
+                                            <Link to='/myFood'>My Food</Link>
                                         </li>
                                         <li>
-                                            <Link to='/my-bids'>Add food</Link>
+                                            <Link to='/addfood'>Add food</Link>
                                         </li>
                                         <li>
-                                            <Link to='/bid-requests'>My Order</Link>
+                                            <Link to='/myOrder'>My Order</Link>
                                         </li>
 
                                     </ul>
