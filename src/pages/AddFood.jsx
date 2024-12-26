@@ -34,11 +34,11 @@ const navigate= useNavigate()
   const handleSubmit = async(e) => {
     e.preventDefault();
     // Handle form submission, e.g., send data to an API
-    console.table({ ...formData, addedBy: { name, email } });
+    // console.table({ ...formData, addedBy: { name, email } });
     toast.success("Food item added successfully!");
     try {
         // 1. make a post request
-        await axios.post(`${import.meta.env.VITE_API_URL}/addfood`, formData)
+        await axios.post(`${import.meta.env.VITE_API_URL}/addfood`, formData, {withCredentials:true})
         // 2. Reset form
         // form.reset()
         // 3. Show toast and navigate

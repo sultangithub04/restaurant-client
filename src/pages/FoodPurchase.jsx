@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import "tailwindcss/tailwind.css";
 import { AuthContext } from "../providers/AuthProvider";
@@ -9,7 +9,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 const FoodPurchase = () => {
   const { state } = useLocation();
   const { user } = useContext(AuthContext);
-  const navagate = useNavigate()
+const navigate= useNavigate()
+  
   const availableQuantity = parseInt(state.quantity);
   const basePrice = state.price;
 
@@ -20,9 +21,22 @@ const FoodPurchase = () => {
     quantity: 1,
   });
 
+
+  if (availableQuantity === 0) {
+    toast.error("Item is not available.");
+  }
+  if (state.email === user.email) {
+    toast.error("Don’t purchase his/her own added food items");
+  }
+  // useEffect(() => {
+
+  // }, [availableQuantity]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-
+    if (value > availableQuantity) {
+      toast.error("can’t buy more than the available quantity")
+    }
     setFormData((prevData) => {
       const updatedData = {
         ...prevData,
@@ -53,17 +67,17 @@ const FoodPurchase = () => {
     };
 
     try {
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/purchase`, data);
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/purchase`, data, { withCredentials: true });
       if (response.status === 200) {
         toast.success("Purchase successful!");
-
+        
         setFormData({ foodName: state.foodName, price: basePrice, quantity: 1 });
-        navagate("/myOrder")
-   
+        navigate("/myOrder")
+
       }
     } catch (error) {
-      console.error("Error submitting purchase:", error);
-      toast.error("Failed to make a purchase.");
+      // console.log("Error submitting purchase:", error);
+      // console.log("Failed to make a purchase.");
     }
   };
 
@@ -129,13 +143,13 @@ const FoodPurchase = () => {
               type="number"
               id="quantity"
               name="quantity"
-              value={formData.quantity > 0 & formData.quantity <= availableQuantity ? formData.quantity : "1"}
+              // value={formData.quantity}
+              value={formData.quantity > 0 & formData.quantity <= availableQuantity ? formData.quantity : availableQuantity}
               onChange={handleChange}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               required
             />
           </div>
-
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2">
               Buyer Name
@@ -159,13 +173,36 @@ const FoodPurchase = () => {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-100 "
             />
           </div>
-
           <button
+  type="submit"
+  className={`w-full font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${
+    availableQuantity === 0 || state.email === user.email
+      ? "bg-gray-400 cursor-not-allowed"
+      : "bg-red-500 hover:bg-red-700 text-white"
+  }`}
+  disabled={availableQuantity === 0 || state.email === user.email}
+>
+  Purchase
+</button>
+
+          {/* <button
+            type="submit"
+            className={`w-full font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${availableQuantity === 0
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-red-500 hover:bg-red-700 text-white"
+              }`}
+            disabled={availableQuantity === 0 & state.email === user.email}
+          >
+            Purchase
+          </button> */}
+
+
+          {/* <button
             type="submit"
             className="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
             Purchase
-          </button>
+          </button> */}
         </form>
       </div>
     </div>

@@ -22,7 +22,7 @@ const handleDelete=async(id)=>{
       
         window.location.reload();
     } catch (err) {
-        console.error(err);
+        // console.error(err);
         toast.error("Failed to update food data");
     }
 }

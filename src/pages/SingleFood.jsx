@@ -26,8 +26,9 @@ const SingleFood = () => {
         setFood(data)
         // setStartDate(new Date(data.deadline))
     }
-    const { _id, foodName, foodImage, foodCategory, quantity, price, foodOrigin, description, purchaseCount } =
+    const { _id, email, foodName, foodImage, foodCategory, quantity, price, foodOrigin, description, purchaseCount } =
         food || {}
+
 
 
     return (

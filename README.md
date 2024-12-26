@@ -1,15 +1,14 @@
-Project Name: Restaurant Management Website  
-A fullstack restaurant management system developed with the MERN stack (MongoDB, Express.js, React.js, Node.js), designed to enhance customer interaction, streamline internal operations, and improve the restaurant's online presence.
+Project Name:
+Restaurant Management Website  
 
-
-
-Purpose
+Purpose:
 This platform allows restaurant owners and customers to seamlessly interact through features such as online food ordering, user management, and an optimized browsing experience. The website integrates authentication, intuitive navigation, and a responsive design using modern tools like Tailwind CSS, Daisy UI, Firebase, and JWT.
 
+Live URL:
+https://restaurant-a10-ph.web.app
 
 
-Live URL
-
+key features:
 
 Public Features
 1. Homepage  
@@ -70,17 +69,12 @@ Public Features
  Tailwind CSS and Daisy UI  
  React Icons for icons.  
  Firebase for authentication.  
- Surge for deployment.  
+ Firebase for deployment.  
 
 
 Tools
 Moment.js for date formatting.  
 YetAnotherReactLightbox for gallery implementation.  
-
-
-
-Installation & Setup
-MongoDB deployment on firebase  
 
 
 githab repository:

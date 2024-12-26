@@ -37,7 +37,7 @@ const UpdateFood = () => {
                 description: data.description || "",
             });
         } catch (err) {
-            console.error(err);
+            // console.error(err);
             toast.error("Failed to fetch food data");
         }
     };
@@ -54,7 +54,7 @@ const UpdateFood = () => {
             toast.success("Data updated successfully!");
             navigate("/myFood");
         } catch (err) {
-            console.error(err);
+            toast.error(err);
             toast.error("Failed to update food data");
         }
     };
