@@ -4,20 +4,21 @@ import axios from 'axios'
 import { Link, NavLink } from 'react-router-dom'
 import FoodCard from '../components/FoodCard'
 import bannerImg from '../assets/banner.jpg';
-import { useContext } from 'react';
-import { AuthContext } from '../providers/AuthProvider';
+// import { useContext } from 'react';
+// import { AuthContext } from '../providers/AuthProvider';
 import LoadingSpinner from '../components/LoadingSpinner';
+import { useQuery } from '@tanstack/react-query';
 
 const AllFood = () => {
-   const { loading } = useContext(AuthContext);
-    const [foods, setFoods] = useState([])
+//    const { loading } = useContext(AuthContext);
+    // const [foods, setFoods] = useState([])
     const [search, setSearch] = useState('')
     const [itemPerPage, setItemPerPage] = useState(8)
     const [currentPage, setCurrentPage] = useState(0)
     const [count, setCount] = useState(0);
 
     useEffect(() => {
-        fetch('http://localhost:5000/foodCount')
+        fetch(`${import.meta.env.VITE_API_URL}/foodCount`)
             .then(res => res.json())
             .then(data => setCount(data.count))
     }, [])
@@ -38,15 +39,24 @@ const AllFood = () => {
         setItemPerPage(parseInt(val));
         setCurrentPage(0)
     }
-    useEffect(() => {
-        const fetchAllFoods = async () => {
-            const { data } = await axios.get(`http://localhost:5000/foods?search=${search}&page=${currentPage}&size=${itemPerPage}`)
-            setFoods(data)
+    // useEffect(() => {
+    //     const fetchAllFoods = async () => {
+    //         const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/foods?search=${search}&page=${currentPage}&size=${itemPerPage}`)
+    //         setFoods(data)
 
+    //     }
+    //     fetchAllFoods()
+    // }, [currentPage, itemPerPage, search])
+    // if (loading) return <LoadingSpinner></LoadingSpinner>
+
+    const {data:foods, isLoading} = useQuery({
+        queryKey: ['foods',search, currentPage, itemPerPage], queryFn: async () => {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/foods?search=${search}&page=${currentPage}&size=${itemPerPage}`)
+            return data
         }
-        fetchAllFoods()
-    }, [currentPage, itemPerPage, search])
-    if (loading) return <LoadingSpinner></LoadingSpinner>
+    })
+    if (isLoading) return <LoadingSpinner></LoadingSpinner>
+
     return (
         <div className='container px-6 py-10 mx-auto min-h-[calc(100vh-306px)] flex flex-col justify-between'>
             <div>

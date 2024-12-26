@@ -14,10 +14,10 @@ const MyOrderCards = ({ food}) => {
 const navigate= useNavigate()
         const formattedDate = moment(buyingDate).format("MMMM Do YYYY, h:mm:ss A");
 
-console.log(food);
+// console.log(food);
 const handleDelete=async(id)=>{
     try {
-        await axios.delete(`http://localhost:5000/delete/${id}`);
+        await axios.delete(`${import.meta.env.VITE_API_URL}/delete/${id}`);
         toast.success("Data delete successfully!");
       
         window.location.reload();

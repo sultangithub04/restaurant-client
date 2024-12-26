@@ -1,22 +1,31 @@
 import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react';
+// import React, { useContext, useEffect, useState } from 'react';
 import FoodCard from './FoodCard';
 import { Link } from 'react-router-dom';
 import LoadingSpinner from './LoadingSpinner';
-import { AuthContext } from '../providers/AuthProvider';
+// import { AuthContext } from '../providers/AuthProvider';
+import { useQuery } from '@tanstack/react-query';
 
 const TopFood = () => {
-    const [foods, setFoods] = useState([])
-    const {loading}= useContext(AuthContext)
-    useEffect(() => {
-        const fetchAllFoods = async () => {
-            const { data } = await axios.get(`http://localhost:5000/topFood`)
-            setFoods(data)
+    // const [foods, setFoods] = useState([])
+    // const { loading } = useContext(AuthContext)
+    // useEffect(() => {
+    //     const fetchAllFoods = async () => {
+    //         const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/topFood`)
+    //         setFoods(data)
+    //     }
+    //     fetchAllFoods()
+    // }, [])
+    // console.log(foods);
+    // if (loading) return <LoadingSpinner></LoadingSpinner>
+    const {data:foods, isLoading} = useQuery({
+        queryKey: ['foods'], queryFn: async () => {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/topFood`)
+            return data
         }
-        fetchAllFoods()
-    }, [])
-    console.log(foods);
-    if (loading) return <LoadingSpinner></LoadingSpinner>
+    })
+    if (isLoading) return <LoadingSpinner></LoadingSpinner>
+
     return (
         <div>
             <h1 className='text-center text-5xl font-extrabold mt-20 text-red-700'>Top Selling Product</h1>

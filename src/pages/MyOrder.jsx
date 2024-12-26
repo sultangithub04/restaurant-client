@@ -17,7 +17,7 @@ const MyOrder = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user])
     const fetchAllFoods = async () => {
-        const { data } = await axios.get(`http://localhost:5000/purchase/${user?.email}`, {withCredentials: true})
+        const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/purchase/${user?.email}`, {withCredentials: true})
         setFoods(data)
     }
     

@@ -25,7 +25,7 @@ const navigate= useNavigate()
     email:"",
     purchaseCount:0,
   });
-console.log(formData);
+// console.log(formData);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value, email });
@@ -38,14 +38,14 @@ console.log(formData);
     toast.success("Food item added successfully!");
     try {
         // 1. make a post request
-        await axios.post(`http://localhost:5000/addfood`, formData)
+        await axios.post(`${import.meta.env.VITE_API_URL}/addfood`, formData)
         // 2. Reset form
         // form.reset()
         // 3. Show toast and navigate
         toast.success('Data Added Successfully!!!')
         navigate('/')
       } catch (err) {
-        console.log(err)
+        // console.log(err)
         toast.error(err.message)
       }
 

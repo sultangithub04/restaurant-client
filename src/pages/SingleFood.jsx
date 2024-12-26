@@ -21,7 +21,7 @@ const SingleFood = () => {
     }, [id])
 
     const fetchJobData = async () => {
-        const { data } = await axios.get(`http://localhost:5000/food/${id}`
+        const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/food/${id}`
         )
         setFood(data)
         // setStartDate(new Date(data.deadline))

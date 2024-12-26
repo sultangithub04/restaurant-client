@@ -18,7 +18,7 @@ const MyFood = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user])
     const fetchAllFoods = async () => {
-        const { data } = await axios.get(`http://localhost:5000/myFood/${user?.email}`)
+        const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/myFood/${user?.email}`)
         setFoods(data)
     }
 

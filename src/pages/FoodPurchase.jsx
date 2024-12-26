@@ -53,7 +53,7 @@ const FoodPurchase = () => {
     };
 
     try {
-      const response = await axios.post("http://localhost:5000/purchase", data);
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/purchase`, data);
       if (response.status === 200) {
         toast.success("Purchase successful!");
 

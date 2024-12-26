@@ -25,7 +25,7 @@ const UpdateFood = () => {
 
     const fetchFoodData = async () => {
         try {
-            const { data } = await axios.get(`http://localhost:5000/food/${id}&${user.email}`);
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/food/${id}`);
             // Set formData with the fetched data
             setFormData({
                 foodName: data.foodName || "",
@@ -50,7 +50,7 @@ const UpdateFood = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`http://localhost:5000/update-food/${id}`, formData);
+            await axios.put(`${import.meta.env.VITE_API_URL}/update-food/${id}`, formData);
             toast.success("Data updated successfully!");
             navigate("/myFood");
         } catch (err) {
