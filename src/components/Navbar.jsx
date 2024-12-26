@@ -9,16 +9,6 @@ const Navbar = () => {
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/allfood" >All Foods</NavLink></li>
         <li><NavLink to="/gallery" >Gallery</NavLink></li>
-
-        {
-            user && <li><NavLink to='/myFood' >My Foods</NavLink></li>
-        }
-        {
-            user && <li><NavLink to='/myOrder' >My Orders </NavLink></li>
-        }
-        {
-            user && <li><NavLink to='/addfood' >Add Food </NavLink></li>
-        }
     </>
     return (
         <div className="navbar bg-base-100 h-5">

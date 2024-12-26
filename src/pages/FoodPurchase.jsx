@@ -10,7 +10,7 @@ const FoodPurchase = () => {
   const { state } = useLocation();
   const { user } = useContext(AuthContext);
   const navagate = useNavigate()
-const availableQuantity= parseInt(state.quantity);
+  const availableQuantity = parseInt(state.quantity);
   const basePrice = state.price;
 
   const [formData, setFormData] = useState({
@@ -59,6 +59,7 @@ const availableQuantity= parseInt(state.quantity);
 
         setFormData({ foodName: state.foodName, price: basePrice, quantity: 1 });
         navagate("/myOrder")
+   
       }
     } catch (error) {
       console.error("Error submitting purchase:", error);
@@ -128,7 +129,7 @@ const availableQuantity= parseInt(state.quantity);
               type="number"
               id="quantity"
               name="quantity"
-              value={formData.quantity>0&formData.quantity<=availableQuantity?formData.quantity:"1"}
+              value={formData.quantity > 0 & formData.quantity <= availableQuantity ? formData.quantity : "1"}
               onChange={handleChange}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               required
