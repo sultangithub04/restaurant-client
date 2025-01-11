@@ -25,9 +25,12 @@ const navigate= useNavigate()
     email:"",
     purchaseCount:0,
   });
-// console.log(formData);
+console.table(formData);
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+   
+  
     setFormData({ ...formData, [name]: value, email });
   };
 
@@ -47,10 +50,7 @@ const navigate= useNavigate()
       } catch (err) {
         // console.log(err)
         toast.error(err.message)
-      }
-
-
-    
+      } 
   };
 
   return (

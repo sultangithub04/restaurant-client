@@ -9,9 +9,11 @@ const Navbar = () => {
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/allfood" >All Foods</NavLink></li>
         <li><NavLink to="/gallery" >Gallery</NavLink></li>
+        <li><NavLink to="/contactus" >Contact Us</NavLink></li>
     </>
     return (
-        <div className="navbar bg-base-100 h-5">
+        // <div className="navbar top-0 fixed z-10 w-full bg-base-100 h-5">
+        <div className="navbar fixed z-10  bg-base-100 h-5 top-0 max-w-screen-xl pr-28 pl-5">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

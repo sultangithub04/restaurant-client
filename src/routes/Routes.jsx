@@ -14,6 +14,8 @@ import MyFood from '../pages/MyFood'
 import MyOrder from '../pages/MyOrder'
 import UpdateFood from '../pages/UpdateFood'
 import PrivateRoute from './PrivateRoute'
+import ContactUs from '../components/ContactUs'
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -64,6 +66,10 @@ const router = createBrowserRouter([
       {
         path: '/update/:id',
         element: <PrivateRoute><UpdateFood></UpdateFood></PrivateRoute>,
+      },
+      {
+        path: '/contactus',
+        element:<ContactUs></ContactUs>
       },
     
     

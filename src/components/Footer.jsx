@@ -80,20 +80,20 @@ const Footer = () => {
           Copyright © 2024 by ABC Restaurant, Fair Group. All Rights Reserved.
         </p>
         <div className="mt-2 space-x-4">
-          <a href="#" className="hover:text-gray-200">
-            About
+          <a href="/" className="hover:text-gray-200">
+            Home
           </a>
           <span>|</span>
-          <a href="#" className="hover:text-gray-200">
-            Online Policy
+          <a href="allfood" className="hover:text-gray-200">
+            All Product
           </a>
           <span>|</span>
-          <a href="#" className="hover:text-gray-200">
-            FAQ
+          <a href="/gallery" className="hover:text-gray-200">
+            Gallery
           </a>
           <span>|</span>
-          <a href="#" className="hover:text-gray-200">
-            Career
+          <a href="/contactus" className="hover:text-gray-200">
+          Contact Us
           </a>
         </div>
       </div>

@@ -2,6 +2,7 @@ import Banner from '../components/Banner';
 import TopFood from '../components/TopFood';
 import ExtraOne from '../components/ExtraOne';
 import ExtraTwo from '../components/ExtraTwo';
+import Additional from '../components/Additional';
 
 const Home = () => {
     return (
@@ -9,8 +10,12 @@ const Home = () => {
 
             <Banner></Banner>
             <TopFood></TopFood>
+            <br />
             <ExtraOne></ExtraOne>
-            <ExtraTwo></ExtraTwo>
+            <br /><br />
+            <Additional></Additional>
+            <br /><br />
+            <ExtraTwo></ExtraTwo><br /><br />
         </div>
     );
 };

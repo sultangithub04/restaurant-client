@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from "../providers/AuthProvider";
 import LoadingSpinner from "./LoadingSpinner";
 // import { format } from 'date-fns'
-const MyOrderCards = ({ food}) => {
+const MyOrderCards = ({ food, fetchAllFoods}) => {
     const {loading}= useContext(AuthContext)
     const { _id, foodName, foodImage, quantity, price, buyingDate } =
         food || {}
@@ -19,8 +19,8 @@ const handleDelete=async(id)=>{
     try {
         await axios.delete(`${import.meta.env.VITE_API_URL}/delete/${id}`);
         toast.success("Data delete successfully!");
-      
-        window.location.reload();
+        fetchAllFoods()
+        // window.location.reload();
     } catch (err) {
         // console.error(err);
         toast.error("Failed to update food data");
